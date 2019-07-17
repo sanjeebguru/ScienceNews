@@ -1,10 +1,14 @@
 package com.gurus.sciencereads.viewmodel;
 
+import com.google.gson.annotations.SerializedName;
+
 import io.reactivex.Observable;
 
 public class NewsItemModel {
 
     private String author;
+
+    @SerializedName("title")
     private String title;
     private String description;
     private String url;
