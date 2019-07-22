@@ -41,5 +41,8 @@ dependencies {
     def archLifecycleVersion = '1.1.1'
     implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$archLifecycleVersion"
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
+    implementation 'com.airbnb.android:lottie:1.0.0'
 
 }

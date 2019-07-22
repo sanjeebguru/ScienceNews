@@ -31,13 +31,15 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         //adapter = new NewsRecyclerViewAdapter(this, newsViewModel.getNewsData().ob);
         activityMainBinding.newsList.setLayoutManager(new LinearLayoutManager(this));
-        activityMainBinding.newsList.setAdapter(adapter);
+        //activityMainBinding.newsList.setAdapter(adapter);
         newsViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
-        newsViewModel.init();
+        newsViewModel.init(this);
         newsViewModel.getNewsData().observe(this, new Observer<List<Article>>() {
             @Override
             public void onChanged(@Nullable List<Article> newsItemModels) {
                 Log.d(TAG, "changed"+newsItemModels.size());
+                adapter = new NewsRecyclerViewAdapter(MainActivity.this, newsItemModels);
+                activityMainBinding.newsList.setAdapter(adapter);
             }
         });
        // Controller controller = new Controller();

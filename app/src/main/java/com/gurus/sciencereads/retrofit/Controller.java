@@ -25,6 +25,7 @@ public class Controller implements Callback<ResponseModel> {
 
     private static final String BASE_URL = "https://newsapi.org/v2/";
     private List<Article> dataSet = new ArrayList<>();
+    MutableLiveData<List<Article>> data = new MutableLiveData<>();
 
     public void start() {
         Gson gson = new GsonBuilder()
@@ -48,6 +49,8 @@ public class Controller implements Callback<ResponseModel> {
         if(response.isSuccessful()) {
             ResponseModel changesList = response.body();
             dataSet = changesList.getArticles();
+            data.setValue(dataSet);
+
             Log.d("-----news",changesList.getStatus());
         } else {
             System.out.println("----news----"+response.message());
@@ -61,9 +64,6 @@ public class Controller implements Callback<ResponseModel> {
 
     public MutableLiveData<List<Article>> getaNewsList(){
         start();
-        MutableLiveData<List<Article>> data = new MutableLiveData<>();
-        data.setValue(dataSet);
-        //Log.d("-----dataset",dataSet.get(0).getTitle());
         return data;
     }
 }

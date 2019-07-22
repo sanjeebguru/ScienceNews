@@ -1,10 +1,15 @@
 package com.gurus.sciencereads.viewmodel;
 
+import android.app.Activity;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModel;
+import android.content.Context;
+import android.support.annotation.Nullable;
 
+import com.gurus.sciencereads.databinding.ActivityMainBinding;
 import com.gurus.sciencereads.retrofit.Controller;
 
 import java.util.ArrayList;
@@ -21,14 +26,13 @@ public class NewsViewModel extends ViewModel implements LifecycleObserver {
         return newsDataList;
     }
     Controller controller = new Controller();
-    public void init(){
+    public void init(Context context){
 
         if (newsDataList!=null){
             return;
         }
-        controller.start();
+        //controller.start();
         newsDataList = controller.getaNewsList();
-        newsDataList.postValue(newsDataList.getValue());
      }
 
 
