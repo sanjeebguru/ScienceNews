@@ -2,6 +2,8 @@ package com.gurus.sciencereads.viewmodel;
 
 import com.google.gson.annotations.SerializedName;
 public class Article {
+
+    private boolean isFavourite;
     @SerializedName("source")
     private SourceModel source;
     @SerializedName("author")
@@ -57,5 +59,13 @@ public class Article {
     }
     public void setPublishedAt(String publishedAt) {
         this.publishedAt = publishedAt;
+    }
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        isFavourite = favourite;
     }
 }

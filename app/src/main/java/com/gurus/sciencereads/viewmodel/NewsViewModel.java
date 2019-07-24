@@ -28,9 +28,9 @@ public class NewsViewModel extends ViewModel implements LifecycleObserver {
     Controller controller = new Controller();
     public void init(Context context){
 
-        if (newsDataList!=null){
-            return;
-        }
+//        if (newsDataList!=null){
+//            return;
+//        }
         //controller.start();
         newsDataList = controller.getaNewsList();
      }
