@@ -57,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
                 simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
                     @Override
                     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
-                        if (newsItemModels.get(viewHolder.getAdapterPosition()).isFavourite()){
-                            return true;
-                        }
                         return false;
                     }
 
@@ -70,6 +67,14 @@ public class MainActivity extends AppCompatActivity {
                         }
                         newsItemModels.remove(viewHolder.getAdapterPosition());
                         adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                    }
+
+                    @Override
+                    public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                        if (newsItemModels.get(viewHolder.getAdapterPosition()).isFavourite()){
+                            return 0;
+                        }
+                        return super.getSwipeDirs(recyclerView, viewHolder);
                     }
                 };
                 ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
